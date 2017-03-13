@@ -91,8 +91,8 @@ def classify_all(class1, class2):
         prob22 = gaussion(a[1], mean22, var22)
         prob23 = gaussion(a[2], mean23, var23)
         prob24 = gaussion(a[3], mean24, var24)
-        prob1 = prob11 + prob12 + prob13 + prob14
-        prob2 = prob21 + prob22 + prob23 + prob24
+        prob1 = prob11 * prob12 * prob13 * prob14
+        prob2 = prob21 * prob22 * prob23 * prob24
         if prob1 > prob2:
             pre_y.append(class1)
         else:

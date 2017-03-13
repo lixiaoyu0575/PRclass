@@ -1,14 +1,16 @@
 import numpy as np
 trainDivide = 0.8
 divideNum = int(trainDivide * 50)
-feature = 3
-class1 = 0
-class2 = 1
 typeDic = { #define class
     'Iris-setosa\n': 0,
     'Iris-versicolor\n': 1,
     'Iris-virginica\n': 2
 }
+batch_num = 1000
+feature_num = 4
+acc0_1, acc1_2, acc0_2 = 0, 0, 0
+acc0_1_feature, acc1_2_feature, acc0_2_feature = [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]
+
 def loadData(path):
     allData = [[], [], []]  # 0: setosa, 1: versicolor, 2:virginica
     with open(path) as f:
@@ -20,6 +22,7 @@ def loadData(path):
             allData[index].append(lineContent)
     f.close()
     return allData
+
 def preprocess(class1A, class2A):
     train_x, train_y, test_x, test_y = [], [], [], []
     indices = np.arange(len(class1A))
@@ -102,18 +105,10 @@ def getAccuracy(test_y, pre_y):
     for i in range(l):
         if test_y[i] == pre_y[i]:
             count += 1
-    # print count
     return float(count) / len(test_y)
 
-irisData = loadData("./iris_data_set/iris.csv")
-# print irisData
-train_x, train_y, test_x, test_y = preprocess(irisData[class1], irisData[class2])
-# print train_x, train_y, test_x, test_y
 
-batch_num = 1000
-feature_num = 4
-acc0_1, acc1_2, acc0_2 = 0, 0, 0
-acc0_1_feature, acc1_2_feature, acc0_2_feature = [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]
+irisData = loadData("./iris_data_set/iris.csv")
 
 for i in range(batch_num):
     train_x, train_y, test_x, test_y = preprocess(irisData[0], irisData[1])

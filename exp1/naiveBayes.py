@@ -6,7 +6,7 @@ typeDic = { #define class
     'Iris-versicolor\n': 1,
     'Iris-virginica\n': 2
 }
-batch_num = 1000
+batch_num = 10
 feature_num = 4
 acc0_1, acc1_2, acc0_2 = 0, 0, 0
 acc0_1_feature, acc1_2_feature, acc0_2_feature = [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]
@@ -108,7 +108,7 @@ def getAccuracy(test_y, pre_y):
     return float(count) / len(test_y)
 
 
-irisData = loadData("./iris_data_set/iris.csv")
+irisData = loadData("./../iris_data_set/iris.csv")
 
 for i in range(batch_num):
     train_x, train_y, test_x, test_y = preprocess(irisData[0], irisData[1])
